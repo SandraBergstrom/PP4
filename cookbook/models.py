@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 class User(models.Model):
+    # model for user data
     fname = models.CharField(max_length=50)
     lname = models.CharField(max_length=100)
     email = models.EmailField(max_length=250)
