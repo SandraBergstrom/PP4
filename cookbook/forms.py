@@ -1,7 +1,7 @@
 from django import forms
-from .models import User
+from .models import Member
 
-class UserForm(forms.ModelForm):
+class MemberForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = Member
         fields = ['fname', 'lname', 'email', 'password', 'food_relation']
