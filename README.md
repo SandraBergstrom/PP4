@@ -1,6 +1,8 @@
 # The Recipe Collective
 
-Are you tired of endless recipe searches, scrolling through pages of uninspiring dishes? Look no further than The Recipe Collective! Our community-driven platform offers a smorgasbord of culinary inspiration, from mouth-watering mains to decadent desserts. Whether you're a seasoned chef or a kitchen novice, we've got something to whet your appetite. Plus, with features like comments and likes, you can connect with fellow foodies and get feedback on your latest creations. So why settle for the same old boring meals? Join The Recipe Collective and spice up your kitchen game!
+Are you tired of cooking the same old meals every week? Let The Recipe Collective be your go-to source for culinary inspiration. Our community-driven platform offers a smorgasbord of delicious recipes to suit every taste bud, whether you're a kitchen novice or a seasoned chef. And for all the tired moms out there with tiny food critics at home, we've got you covered too! Plus, with features like comments and likes, you can connect with fellow foodies and get feedback on your latest creations. 
+
+So why settle for the same old boring meals? Join The Recipe Collective and spice up your kitchen game!
 
 [AmIResponsive-img]
 
