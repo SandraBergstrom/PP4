@@ -21,3 +21,5 @@ class User(models.Model):
     food_relation = models.CharField(max_length=30, choices=food_relation_choices, default='HOME_COOK')
     date_joined = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.fname} {self.lname}, {self.get_food_relation_display()}"
