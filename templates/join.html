@@ -7,19 +7,19 @@
     <form method="POST" action="{% url 'join' %}">
         {% csrf_token %}
         <div class="mb-3">
-          <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="First Name" name="fname">
+          <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="First Name" name="fname" required>
         </div>
 
         <div class="mb-3">
-            <input type="text" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Last Name" name="lname">
+            <input type="text" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Last Name" name="lname" required>
           </div>
 
         <div class="mb-3">
-            <input type="email" class="form-control" id="user_email" aria-describedby="emailHelp" placeholder="Email Address" name="email">
+            <input type="email" class="form-control" id="user_email" aria-describedby="emailHelp" placeholder="Email Address" name="email"">
           </div>
 
         <div class="mb-3">
-          <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+          <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
         </div>
 
         <div class="mb-3">
@@ -30,12 +30,12 @@
                 <option value="FOOD_STYLIST">Food Stylist</option>
                 <option value="CULINARY_INSTRUCTOR">Culinary Instructor</option>
                 <option value="FOOD_CRITIC">Food Critic</option>
-                <option value="HOME_COOK">Home Cook</option>
+                <option value="HOME_COOK" selected>Home Cook</option>
                 <option value="OTHER">Other</option>
             </select>
         </div><br>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Sign Up!</button>
       </form>
 
 {% endblock %}
