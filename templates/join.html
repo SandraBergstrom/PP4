@@ -1,1 +1,41 @@
-<h2>Join Us Today!</h2>
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Join Us Today!</h2><br><br>
+
+    <form method="POST" action="{% url 'join' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="First Name" name="fname">
+        </div>
+
+        <div class="mb-3">
+            <input type="text" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Last Name" name="lname">
+          </div>
+
+        <div class="mb-3">
+            <input type="email" class="form-control" id="user_email" aria-describedby="emailHelp" placeholder="Email Address" name="email">
+          </div>
+
+        <div class="mb-3">
+          <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+        </div>
+
+        <div class="mb-3">
+            <label for="food_relation">What's your relation to food?</label>
+            <select name="food_relation" id="food_relation">
+                <option value="CHEF">Chef</option>
+                <option value="PASTRY_CHEF">Pastry Chef</option>
+                <option value="FOOD_STYLIST">Food Stylist</option>
+                <option value="CULINARY_INSTRUCTOR">Culinary Instructor</option>
+                <option value="FOOD_CRITIC">Food Critic</option>
+                <option value="HOME_COOK">Home Cook</option>
+                <option value="OTHER">Other</option>
+            </select>
+        </div><br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+{% endblock %}
