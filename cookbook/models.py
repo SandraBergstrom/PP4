@@ -29,7 +29,7 @@ STATUS = ((0, "Private"), (1, "Public"))
 
 class Ingredient(models.Model):
     quantity = models.FloatField(max_length=2)
-    unit = models.CharField(max_length=4)
+    unit = models.CharField(max_length=10)
     name = models.CharField(max_length=200)
 
 class Instruction(models.Model):
@@ -38,7 +38,7 @@ class Instruction(models.Model):
 
 class Recipe(models.Model):
     title = models.CharField(max_length=250, unique=True)
-    slug = models.CharField(max_length=250, unique=True)
+    slug = models.SlugField(max_length=250, unique=True)
     author = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='recipe_post')
     category_choices = [
         ('APPETIZERS', 'Apperizers'),
@@ -51,6 +51,9 @@ class Recipe(models.Model):
         ('OTHER', 'Other'),
     ]
     category = models.CharField(max_length=30, choices=category_choices)
+    prep_time = models.DurationField(blank=True, null=True)
+    cooking_time = models.DurationField(blank=True, null=True)
+    servings = models.IntegerField()
     description = models.TextField(max_length=1000)
     ingredients = models.ManyToManyField(Ingredient)
     instructions = models.ManyToManyField(Instruction)
