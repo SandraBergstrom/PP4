@@ -75,6 +75,7 @@ Visit the live web app: The Recipe Collective
 
 
 ### Future Implementations
+- Automated excerp if user will not add one themselves
 
 
 ### Accessibility
@@ -98,6 +99,9 @@ Visit the live web app: The Recipe Collective
 
 ### Bugs
 - textfield in recipe card on index.htm is showing code, not actual text. 
+  - solved it with |safe
+
+- I wanted to auto-generate an excerp from the description with the truncator. It didn't want to work on the html so I also tried in the model, but ended up deciding that the user will add a truncator themselves. Automated excerp if user will not add one themselves, will be a future feature. 
 
 
 #### How to Fork

@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-from django.utils.text import Truncator
 
 
 class Member(models.Model):
@@ -80,11 +79,6 @@ class Recipe(models.Model):
     updated_on =models.DateField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='recipe_likes', blank=True)
-
-    # def save(self, *args, **kwargs):
-    #     if not self.excerp:
-    #         self.excerp = Truncator(self.description).words(20)
-    #     super(*args, **kwargs).save(self)
 
     class Meta: 
         ordering: ['-created_on']
