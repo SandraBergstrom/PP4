@@ -25,9 +25,9 @@ class Member(models.Model):
         return f"{self.fname} {self.lname}, {self.get_food_relation_display()}"
 
 
-STATUS = ((0, "Private"), (1, "Public"))
-
 class Ingredient(models.Model):
+    # model for ingredients with seperate fields for quantity, unit and ingredient name
+
     quantity = models.FloatField(max_length=2)
     unit = models.CharField(max_length=10)
     name = models.CharField(max_length=200)
@@ -35,14 +35,22 @@ class Ingredient(models.Model):
     def __str__(self):
         return f"{self.quantity} {self.unit} {self.name}"  
 
+
 class Instruction(models.Model):
+    # model for instructions added by user. Instructions will be automatically numbered starting from 1.
+
     step_number = models.AutoField(primary_key=True)
     description = models.TextField(max_length=1000)
 
     def __str__(self):
         return f"{self.step_number}. {self.description}"
 
+
+STATUS = ((0, "Private"), (1, "Public"))
+
+
 class Recipe(models.Model):
+    # model for recipe
     title = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     author = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='recipe_post')
@@ -78,6 +86,7 @@ class Recipe(models.Model):
         return self.likes.count()
 
 class Comment(models.Model):
+    # model for comments added to recipes
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='comments')
     name = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField(max_length=1000)
