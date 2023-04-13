@@ -1,9 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.utils.text import Truncator
+
 
 class Member(models.Model):
     # model for member data
+
     fname = models.CharField(max_length=50)
     lname = models.CharField(max_length=100)
     email = models.EmailField(max_length=250)
@@ -51,6 +54,7 @@ STATUS = ((0, "Private"), (1, "Public"))
 
 class Recipe(models.Model):
     # model for recipe
+
     title = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     author = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='recipe_post')
@@ -68,13 +72,19 @@ class Recipe(models.Model):
     prep_time = models.DurationField(blank=True, null=True)
     cooking_time = models.DurationField(blank=True, null=True)
     servings = models.IntegerField(default=1)
+    excerp = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=1000)
     ingredients = models.ManyToManyField(Ingredient)
     instructions = models.ManyToManyField(Instruction)
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_on =models.DateTimeField(auto_now=True)
+    created_on = models.DateField(auto_now_add=True)
+    updated_on =models.DateField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='recipe_likes', blank=True)
+
+    # def save(self, *args, **kwargs):
+    #     if not self.excerp:
+    #         self.excerp = Truncator(self.description).words(20)
+    #     super(*args, **kwargs).save(self)
 
     class Meta: 
         ordering: ['-created_on']
@@ -87,10 +97,12 @@ class Recipe(models.Model):
 
 class Comment(models.Model):
     # model for comments added to recipes
+
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='comments')
     name = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField(max_length=1000)
     created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
 
     class Meta:
         ordering: ['created_on']

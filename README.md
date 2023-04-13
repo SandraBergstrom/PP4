@@ -96,6 +96,9 @@ Visit the live web app: The Recipe Collective
 
 ### Local Development
 
+### Bugs
+- textfield in recipe card on index.htm is showing code, not actual text. 
+
 
 #### How to Fork
 

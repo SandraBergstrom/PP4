@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Welcome!</h1>
+
+    <!-- Recipe list-->
+    <div class="col-12 mt-3 left">
+        <div class="row">
+          {% for recipe in recipe_list %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="col">
+                <div class="card h-100">
+                  <img src="/static/images/placeholder.jpg" class="card-img-top" alt="Placeholder of recipe image">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                    <small class="author">by: {{ recipe.author }}</small>
+                    <hr>
+                    <p class="card-text">{{ recipe.excerp|safe }}...</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-body-secondary">Created: {{ recipe.created_on }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+              </div>
+              <div class="row">
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}

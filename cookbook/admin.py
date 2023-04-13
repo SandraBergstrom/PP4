@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Member, Recipe, Ingredient, Instruction
+from .models import Member, Recipe, Ingredient, Instruction, Comment
 from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Recipe)
@@ -11,6 +11,16 @@ class RecipeAdmin(SummernoteModelAdmin):
     summernote_fields = ("description",)
 
 admin.site.register(Member)
-# admin.site.register(Recipe)
 admin.site.register(Ingredient)
 admin.site.register(Instruction)
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'comment', 'recipe', 'created_on', 'approved')
+    list_filter = (['created_on', 'approved'])
+    search_fields = ('name', 'email', 'comment')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(approved=True)
