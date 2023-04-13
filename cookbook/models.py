@@ -32,16 +32,22 @@ class Ingredient(models.Model):
     unit = models.CharField(max_length=10)
     name = models.CharField(max_length=200)
 
+    def __str__(self):
+        return f"{self.quantity} {self.unit} {self.name}"  
+
 class Instruction(models.Model):
     step_number = models.AutoField(primary_key=True)
     description = models.TextField(max_length=1000)
+
+    def __str__(self):
+        return f"{self.step_number}. {self.description}"
 
 class Recipe(models.Model):
     title = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     author = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='recipe_post')
     category_choices = [
-        ('APPETIZERS', 'Apperizers'),
+        ('APPETIZERS', 'Appetizers'),
         ('BREAKFAST', 'Breakfast'),
         ('MAIN_DISHES', 'Main Dishes'),
         ('DESSERTS', 'Desserts'),
@@ -60,4 +66,15 @@ class Recipe(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on =models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(Member, related_name='recipe_likes')
+    likes = models.ManyToManyField(User, related_name='recipe_likes', blank=True)
+
+    class Meta: 
+        ordering: ['-created_on']
+
+    def __str__(self):
+        return self.title
+
+    def number_of_likes(self):
+        return self.likes.count()
+
+    
