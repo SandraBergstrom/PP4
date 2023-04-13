@@ -53,7 +53,7 @@ class Recipe(models.Model):
     category = models.CharField(max_length=30, choices=category_choices)
     prep_time = models.DurationField(blank=True, null=True)
     cooking_time = models.DurationField(blank=True, null=True)
-    servings = models.IntegerField()
+    servings = models.IntegerField(default=1)
     description = models.TextField(max_length=1000)
     ingredients = models.ManyToManyField(Ingredient)
     instructions = models.ManyToManyField(Instruction)
