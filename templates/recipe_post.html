@@ -9,29 +9,30 @@
         <div class="col card mb-4  mt-3 left  top">
             <div class="container-recipe-post-card">
                 <div class="image-body">
-                    <img src="{{ recipe.featured_image.url }}" alt="Image of recipe">
+                    <img src="{{ recipe.featured_image.url }}" class="recipe-image" alt="Image of recipe">
                 </div>
                 <div class="card-body">
                     <h2>{{ recipe.title }}</h2>
                     <small>by {{ recipe.author }} </small>
-                    <br><br>
+                    <br>
+                    <div class="row">
+                        <div class="col-1">
+                            <!-- The number of likes goes before the closing strong tag -->
+                            <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_likes }}
+                            </strong>
+                        </div>
+                        <div class="col-1">
+                            {% with comments.count as total_comments %}
+                            <strong class="text-secondary"><i class="far fa-comments"></i>
+                                <!-- Our total_comments variable goes before the closing strong tag -->
+                                {{ total_comments }}</strong>
+                            {% endwith %}
+                        </div>
+                    </div>
+                    <br>
                     <p class="card-text ">
                         {{ recipe.description|safe }}
                     </p>
-                </div>
-                <div class="row">
-                </div>
-                <div class="col-1">
-                    <!-- The number of likes goes before the closing strong tag -->
-                    <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_likes }}
-                    </strong>
-                </div>
-                <div class="col-1">
-                    {% with comments.count as total_comments %}
-                    <strong class="text-secondary"><i class="far fa-comments"></i>
-                        <!-- Our total_comments variable goes before the closing strong tag -->
-                        {{ total_comments }}</strong>
-                    {% endwith %}
                 </div>
             </div>
         </div>
