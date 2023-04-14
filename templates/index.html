@@ -17,7 +17,9 @@
               <img src="{{ recipe.featured_image.url }}" class="card-img-top" alt="Recipe image">
             </div>
             <div class="card-body">
-              <h5 class="card-title">{{ recipe.title }}</h5>
+              <h5 class="card-title">
+                <a href="{% url 'recipe_post' recipe.slug %}">
+                {{ recipe.title }} </a></h5>
               <small class="author">by: {{ recipe.author }}</small>
               <hr>
               <p class="card-text">{{ recipe.excerp|safe }}...</p>
