@@ -12,8 +12,8 @@ def join(request):
         form = MemberForm(request.POST or None)
         if form.is_valid():
             form.save()
-        messages.success(request, ('You are now a member!'))
-        return redirect('home')
+        messages.success(request, ('You are now a member. Please log in!'))
+        return redirect('login')
 
     else: 
         return render(request, 'join.html')

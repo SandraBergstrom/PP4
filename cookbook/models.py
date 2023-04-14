@@ -89,6 +89,30 @@ class Recipe(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
+    @classmethod
+    def create(cls, title, slug, author, category, prep_time, cooking_time, servings, excerp,description, ingredients, instructions, status):
+        recipe = cls(
+            title=title, 
+            slug=slug, 
+            author=author, 
+            category=category, 
+            prep_time=prep_time, 
+            cooking_time=cooking_time,
+            servings=servings,
+            excerp=excerp,
+            description=description,
+            status=status
+            )
+            
+        recipe.save()
+
+        for ingredient in ingredients:
+            recipe.ingredient.create(name=ingredient)
+        for Instruction in instructions:
+            recipe.instruction.create(description=instruction)
+            
+        return recipe
+
 class Comment(models.Model):
     # model for comments added to recipes
 

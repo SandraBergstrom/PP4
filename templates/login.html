@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Log in here</h2><br><br>
+
+    <form method="POST" action="{% url 'join' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="email" class="form-control" id="user_email" aria-describedby="emailHelp" placeholder="Email Address" name="email"">
+          </div>
+
+        <div class="mb-3">
+          <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+        </div><br>
+
+        <button type="submit" class="btn btn-primary">Log in!!</button>
+        <br>
+        <br>
+      </form>
+      <div class="border-top pt-3">
+        <small class="text-muted">
+          Do You Need An Account? <a class="ml-2" href="{% url 'join' %}">Sign Up Now!</a>
+        </small>
+      </div>
+
+{% endblock %}

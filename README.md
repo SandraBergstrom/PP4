@@ -98,6 +98,10 @@ Visit the live web app: The Recipe Collective
 ### Local Development
 
 ### Bugs
+- Success message for sign up shows when logging in. 
+
+- 404: can´t find url.
+  - Mistakenly removed the url to index when adding the url to login. 
 - textfield in recipe card on index.htm is showing code, not actual text. 
   - solved it with |safe
 
