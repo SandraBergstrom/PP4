@@ -13,11 +13,9 @@
       <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="col">
           <div class="card h-100">
-            {% if 'placeholder' in recipe.featured_image.url %}
-            <img src="/static/images/placeholder.jpg" class="card-img-top" alt="Placeholder of recipe image">
-            {% else %}
-            <img src="{{ recipe.featured_image}}" class="card-img-top" alt="Recipe image">
-            {% endif %}
+            <div class="image-body">
+              <img src="{{ recipe.featured_image.url }}" class="card-img-top" alt="Recipe image">
+            </div>
             <div class="card-body">
               <h5 class="card-title">{{ recipe.title }}</h5>
               <small class="author">by: {{ recipe.author }}</small>
@@ -26,8 +24,7 @@
             </div>
             <div class="card-footer">
               <small class="text-body-secondary">Created: {{ recipe.created_on }}</small>
-              <small><i class="far fa-heart"></i>
-                {{ post.number_of_likes }}</small>
+              <small><i class="far fa-heart"></i> {{ recipe.number_of_likes }}</small>
             </div>
           </div>
         </div>

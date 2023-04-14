@@ -54,9 +54,11 @@ STATUS = ((0, "Private"), (1, "Public"))
 class Recipe(models.Model):
     # model for recipe
 
+    placeholder = ""
+
     title = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
-    featured_image = CloudinaryField('image', default='placeholder')
+    featured_image = CloudinaryField('image')
     author = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='recipe_post')
     category_choices = [
         ('APPETIZERS', 'Appetizers'),
