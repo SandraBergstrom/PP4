@@ -56,6 +56,7 @@ class Recipe(models.Model):
 
     title = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
+    featured_image = CloudinaryField('image', default='placeholder')
     author = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='recipe_post')
     category_choices = [
         ('APPETIZERS', 'Appetizers'),
@@ -103,7 +104,7 @@ class Recipe(models.Model):
             description=description,
             status=status
             )
-            
+
         recipe.save()
 
         for ingredient in ingredients:
