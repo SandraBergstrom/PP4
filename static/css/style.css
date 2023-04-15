@@ -7,9 +7,18 @@ a {
     color: var(--bs-heading-color,inherit);
 }
 
-.container-recipe-post-card{
-    display: flex;
+/* RECIPE POST */
+
+#recipe-post-description {
+    position: absolute;
+    bottom: 5px;
 }
+
+/* RECIPE CARDS */
+
+.card {
+    margin-bottom: 1.5rem;
+} 
 
 .card-img-top {
     width: 100%;
@@ -17,12 +26,7 @@ a {
     object-fit: cover;
 }
 
-.card {
-    margin-bottom: 1.5rem;
-}
-
-.recipe-image {
+/* .recipe-image {
     width: 100%;
-   
     object-fit: cover;
-}
+} */

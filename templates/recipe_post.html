@@ -2,69 +2,51 @@
 
 {% block content %}
 
-
-
-<div class="container">
-    <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
-            <div class="container-recipe-post-card">
-                <div class="image-body">
-                    <img src="{{ recipe.featured_image.url }}" class="recipe-image" alt="Image of recipe">
-                </div>
-                <div class="card-body">
-                    <h2>{{ recipe.title }}</h2>
-                    <small>by {{ recipe.author }} </small>
-                    <br>
-                    <div class="row">
-                        <div class="col-1">
-                            <!-- The number of likes goes before the closing strong tag -->
-                            <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_likes }}
-                            </strong>
-                        </div>
-                        <div class="col-1">
-                            {% with comments.count as total_comments %}
-                            <strong class="text-secondary"><i class="far fa-comments"></i>
-                                <!-- Our total_comments variable goes before the closing strong tag -->
-                                {{ total_comments }}</strong>
-                            {% endwith %}
-                        </div>
-                    </div>
-                    <br>
-                    <p class="card-text ">
-                        {{ recipe.description|safe }}
-                    </p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col">
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Comments:</h3>
+<section>
+    <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4 h-400">
+            <img src="{{ recipe.featured_image.url }}" class="img-fluid rounded-start" alt="Image of recipe" style="overflow:hidden">
+          </div>
+          <div class="col-md-8">
             <div class="card-body">
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                        {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
-                            <!-- The comment's created date goes here -->
-                            {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
-                    <!-- The body of the comment goes before the | -->
-                    {{ comment.body | linebreaks }}
-                </div>
-                <!-- Our for loop ends here -->
-                {% endfor %}
+              <h5 class="card-title">{{ recipe.title }}</h5>
+              <small>by {{ recipe.author }} </small>
+              <hr>
+              <p class="card-text">{{ recipe.description|safe }}</p>
+              <p class="card-text" id="recipe-post-description"><small class="text-body-secondary">Last updated: {{ recipe.updated_on }}</small></p>
             </div>
+          </div>
         </div>
+      </div>
+</section>
 
-
-        {% endblock %}
+<div class="row">
+    <div class="col">
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 card mb-4  mt-3 ">
+        <h3>Comments:</h3>
+        <div class="card-body">
+            <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+            {% for comment in comments %}
+            <div class="comments" style="padding: 10px;">
+                <p class="font-weight-bold">
+                    <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                    {{ comment.name }}
+                    <span class=" text-muted font-weight-normal">
+                        <!-- The comment's created date goes here -->
+                        {{ comment.created_on }}
+                    </span> wrote:
+                </p>
+                <!-- The body of the comment goes before the | -->
+                {{ comment.body | linebreaks }}
+            </div>
+            <!-- Our for loop ends here -->
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    {% endblock %}
