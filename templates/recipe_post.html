@@ -5,21 +5,50 @@
 <section>
     <div class="card mb-3">
         <div class="row g-0">
-          <div class="col-md-4 h-400">
-            <img src="{{ recipe.featured_image.url }}" class="img-fluid rounded-start" alt="Image of recipe" style="overflow:hidden">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{ recipe.title }}</h5>
-              <small>by {{ recipe.author }} </small>
-              <hr>
-              <p class="card-text">{{ recipe.description|safe }}</p>
-              <p class="card-text" id="recipe-post-description"><small class="text-body-secondary">Last updated: {{ recipe.updated_on }}</small></p>
+            <div class="col-md-4 h-400">
+                <img src="{{ recipe.featured_image.url }}" class="img-fluid rounded-start" alt="Image of recipe"
+                    style="overflow:hidden">
             </div>
-          </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                    <small>by {{ recipe.author }} </small>
+                    <hr>
+                    <p class="card-text">{{ recipe.description|safe }}</p>
+                    <p class="card-text" id="recipe-post-description"><small class="text-body-secondary">Last updated:
+                            {{ recipe.updated_on }}</small></p>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
 </section>
+<section>
+    <div class="container-details">
+        <div>
+            <h2>Ingredients</h2>
+        </div> 
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            {% for instruction in recipe.instructions.all %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="{{ recipe.slug }}-{{ instruction.step }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#{{ recipe.slug }}-{{ instruction.step }}-collapse" aria-expanded="false"
+                        aria-controls="{{ recipe.slug }}-{{ instruction.step }}-collapse">
+                        Step {{ instruction.step_number }}
+                    </button>
+                </h2>
+                <div id="{{ recipe.slug }}-{{ instruction.step }}-collapse" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p>{{ instruction.description }}</p>
+                    </div>
+                </div>
+            </div>  
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 
 <div class="row">
     <div class="col">
@@ -49,4 +78,4 @@
         </div>
     </div>
 </div>
-    {% endblock %}
+{% endblock %}

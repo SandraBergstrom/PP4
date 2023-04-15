@@ -14,6 +14,21 @@ a {
     bottom: 5px;
 }
 
+.container-details {
+    display: flex;
+}
+
+.accordion {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.accordion-item {
+    right: 5px;
+    width: 66%;
+}
+
 /* RECIPE CARDS */
 
 .card {
