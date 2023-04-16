@@ -1,10 +1,31 @@
+:root {
+    --clr-primary-light: rgba(248, 248, 246);
+    --clr-primary-dark: rgba(36, 36, 36);
+
+    --clr-neutral-light: rgba(212, 195, 171);
+    --clr-neutral-dark: rgba(86, 79, 69);
+
+    --clr-accent-pink: rgb(176, 75, 124);
+    --clr-accent-orange: rgba(213, 142, 88);
+    --clr-accent-green: rgba(136, 145, 112);
+}
+
+
+
 body{
-    background: #fbfbfb
+    background: var(--clr-primary-light);
+    color: var(--clr-primary-dark)
 } 
 
 a {
     text-decoration: none;
     color: var(--bs-heading-color,inherit);
+}
+
+.btn-custom {
+    background-color: var(--clr-accent-orange);
+    color: var(--clr-primary-light);
+
 }
 
 /* RECIPE POST */
